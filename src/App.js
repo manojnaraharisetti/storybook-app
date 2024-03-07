@@ -1,23 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import TaskManager from './components/TaskManager';
 
 function App() {
+  // Define the event handling functions here
+  const handleAddTask = (newTask) => {
+    console.log('Task added:', newTask);
+    // Implement logic to add task
+  };
+
+  const handleDeleteTask = (remainingTasks) => {
+    console.log('Task deleted:', remainingTasks);
+    // Implement logic to delete task
+  };
+
+  const handleEditTask = (updatedTask) => {
+    console.log('Task edited:', updatedTask);
+    // Implement logic to edit task
+  };
+
+  const handleUpdateStatus = (updatedTask) => {
+    console.log('Task status updated:', updatedTask);
+    // Implement logic to update task status
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>asjvjhdgvfhjgsdf</h1>
+      {/* Pass all event handling functions to the TaskManager component */}
+      <TaskManager 
+        onAddTask={handleAddTask} 
+        onDeleteTask={handleDeleteTask} 
+        onEditTask={handleEditTask} 
+        onUpdateStatus={handleUpdateStatus} 
+      />
     </div>
   );
 }
