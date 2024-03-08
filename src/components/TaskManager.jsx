@@ -68,14 +68,14 @@ const TaskManager = ({ onAddTask, onDeleteTask, onEditTask, onUpdateStatus }) =>
 
   return (
     <div>
-      <select value={filterStatus} onChange={handleFilterChange}>
+      <TaskForm onSubmit={handleAddTask} />
+      <TaskList tasks={filteredTasks} onDelete={handleDeleteTask} onEdit={handleEditTask} onUpdateStatus={handleUpdateStatus} />
+      {/* <select value={filterStatus} onChange={handleFilterChange}>
         <option value="all">All Tasks</option>
         <option value="notdone">Not Done Tasks</option>
         <option value="inprogress">In Progress Tasks</option>
         <option value="completed">Completed Tasks</option>
-      </select>
-      <TaskForm onSubmit={handleAddTask} />
-      <TaskList tasks={filteredTasks} onDelete={handleDeleteTask} onEdit={handleEditTask} onUpdateStatus={handleUpdateStatus} />
+      </select> */}
     </div>
   );
 };

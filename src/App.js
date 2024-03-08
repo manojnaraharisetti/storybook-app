@@ -24,9 +24,8 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>asjvjhdgvfhjgsdf</h1>
-      {/* Pass all event handling functions to the TaskManager component */}
+    <div className="myapp">
+      <h1>Task Management Dashboard</h1>
       <TaskManager 
         onAddTask={handleAddTask} 
         onDeleteTask={handleDeleteTask} 
