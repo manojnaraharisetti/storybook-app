@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TaskForm from './Addlistcomponent/TaskForm.jsx';
 import TaskList from './DiaplayListComponent/TaskList.jsx';
+import './../App.css';
 
 const TaskManager = ({ onAddTask, onDeleteTask, onEditTask, onUpdateStatus }) => {
   const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')) || []);
@@ -68,14 +69,19 @@ const TaskManager = ({ onAddTask, onDeleteTask, onEditTask, onUpdateStatus }) =>
 
   return (
     <div>
-      <TaskForm onSubmit={handleAddTask} />
+      <h1>Task Management Dashboard</h1>
+      <div className="container">
+        <TaskForm onSubmit={handleAddTask} />
+        <div className="slesjdhbsd">
+          <select value={filterStatus} onChange={handleFilterChange} className='selectoptioncls'>
+            <option value="all">All Tasks</option>
+            <option value="notdone">Not Done Tasks</option>
+            <option value="inprogress">In Progress Tasks</option>
+            <option value="completed">Completed Tasks</option>
+          </select>
+          </div>
+      </div>
       <TaskList tasks={filteredTasks} onDelete={handleDeleteTask} onEdit={handleEditTask} onUpdateStatus={handleUpdateStatus} />
-      {/* <select value={filterStatus} onChange={handleFilterChange}>
-        <option value="all">All Tasks</option>
-        <option value="notdone">Not Done Tasks</option>
-        <option value="inprogress">In Progress Tasks</option>
-        <option value="completed">Completed Tasks</option>
-      </select> */}
     </div>
   );
 };

@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import './TaskForm.css'
+import { toast } from "react-toastify";
 
 const TaskForm = ({ onSubmit }) => {
   const [title, setTitle] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!title.trim()) return;
+    if (!title.trim()) {
+      toast.error("Please enter a task.");
+      return;
+    }
     onSubmit(title);
     setTitle('');
+    toast.success("Task added successfully!");
   };
+
 
   return (
     <form onSubmit={handleSubmit}>

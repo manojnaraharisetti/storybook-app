@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import './../../App.css';
+import { toast } from "react-toastify";
+
 
 const TaskList = ({ tasks, onDelete, onEdit, onUpdateStatus }) => {
   const [editedTitle, setEditedTitle] = useState('');
@@ -7,6 +12,7 @@ const TaskList = ({ tasks, onDelete, onEdit, onUpdateStatus }) => {
   const handleEdit = (id, title, status) => {
     setEditId(id);
     setEditedTitle(title);
+    toast.info("Editing task...");
   };
 
   const handleSaveEdit = () => {
@@ -14,11 +20,18 @@ const TaskList = ({ tasks, onDelete, onEdit, onUpdateStatus }) => {
       onEdit(editId, editedTitle);
       setEditId(null);
       setEditedTitle('');
+      toast.success("Task edited successfully!");
     }
+  };
+
+  const handleDelete = (id) => {
+    onDelete(id);
+    toast.error("Task deleted!");
   };
 
   const handleStatusUpdate = (id, status) => {
     onUpdateStatus(id, status);
+    toast.info("Task status updated!");
   };
 
   return (
@@ -46,9 +59,10 @@ const TaskList = ({ tasks, onDelete, onEdit, onUpdateStatus }) => {
                   <span className="task-title">{task.title}</span><br></br>
                   {(!task.editedAt && <span>Created At: {task.createdAt}</span>) ||
                     (task.editedAt && <span>Edited At: {task.editedAt}</span>)}&nbsp;&nbsp;&nbsp;
-                  <span onClick={() => onDelete(task.id)}><i className="fa-solid fa-trash"></i></span>&nbsp;&nbsp;
-                  <span onClick={() => handleEdit(task.id, task.title, task.status)}><i className="fa-solid fa-pen-to-square"></i></span>&nbsp;<br></br>
+                  <span onClick={() => handleDelete(task.id)}><FontAwesomeIcon icon={faTrash} />&nbsp;&nbsp;</span>
+                  <span onClick={() => handleEdit(task.id, task.title, task.status)}><FontAwesomeIcon icon={faPenToSquare} /></span> <br></br>
                   <p>Status :-</p>
+
                   <div className='ststusbutton'>
                     <button onClick={() => handleStatusUpdate(task.id, 'notdone')} className={task.status === 'notdone' ? 'active' : ''}>Not Yet Done</button>&nbsp;&nbsp;
                     <button onClick={() => handleStatusUpdate(task.id, 'inprogress')} className={task.status === 'inprogress' ? 'active' : ''}>In Progress</button>&nbsp;&nbsp;

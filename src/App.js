@@ -1,5 +1,7 @@
 import './App.css';
 import TaskManager from './components/TaskManager';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   // Define the event handling functions here
@@ -25,7 +27,16 @@ function App() {
 
   return (
     <div className="myapp">
-      <h1>Task Management Dashboard</h1>
+    <ToastContainer position="top-right"
+          autoClose={2000} // Adjust autoClose time as needed
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+           />
       <TaskManager 
         onAddTask={handleAddTask} 
         onDeleteTask={handleDeleteTask} 
